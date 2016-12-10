@@ -1,0 +1,101 @@
+#:kivy 1.0.9
+<ProgramActions>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 2
+		BoxLayout:
+			orientation: 'horizontal'
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.width, 2 
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						text: 'Bulb Delay:'
+					Label:
+						id: shutter_time_label
+						text: root.shutterTime
+				GridLayout:
+					padding: 10
+					spacing: 10
+					cols: 4
+					Button:
+						text: '-'
+						on_press: root.decreaseShutter()
+					Button:
+						text: '+'
+						on_press: root.increaseShutter()
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						text: 'Exposure:'
+					Label:
+						id: exposure_label
+						text: root.exposureIndex
+				GridLayout:
+					cols: 4
+					padding: 10
+					spacing: 10
+					Button:
+						text: '-'
+						on_press: root.decreaseExposure()
+					Button:
+						text: '+'
+						on_press: root.increaseExposure()
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					Label: 
+						text: 'Aperture:'
+					Label:
+						id: aperture_label
+						text: root.aperture
+				GridLayout:
+					cols: 4
+					padding: 10
+					spacing: 10
+					Button:
+						text: '-'
+						on_press: root.decreaseAperture()
+					Button:
+						text: '+'
+						on_press: root.increaseAperture()
+		BoxLayout:
+			padding: 10
+			spacing: 10
+			size_hint: 1, 0.5
+			Button:
+				text: "Test First"
+			Button:
+				text: "Test Last"
+			Button: 
+				text: "Test Bulb"
+				on_press: root.test_bulb()
+			Button:
+				text: "Idle Servo"
+				on_press: root.idle_servo()
+		BoxLayout:
+			BoxLayout:
+				Label:
+					id: servo_position_label
+					text: root.servo_angle
+				Slider:
+					min: 1
+					max: 180
+					step: 1
+					id: servo_angle_slider
+					on_value: root.change_servo_angle()
+
+		BoxLayout: 
+			size_hint: 1, 0.5
+			Button:
+				text: 'BACK'
+				on_press: root.manager.current = 'home'
+			Button:
+				text: 'NEXT'
+				on_press: root.manager.current = 'motor'

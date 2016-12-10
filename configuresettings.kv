@@ -1,0 +1,236 @@
+#:kivy 1.0.9
+<ConfigureSettings>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 5
+		padding: 5
+		BoxLayout:
+			orientation: 'horizontal'
+
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'PAN'
+				GridLayout:
+					cols: 2
+					Button:
+						text: 'LEFT'
+						on_press: root.scroll_pan_left()
+						on_release: root.stop_motors()
+					Button:
+						text: 'RIGHT'
+						on_press: root.scroll_pan_right()
+						on_release: root.stop_motors()
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'TILT'
+				GridLayout:
+					cols: 2
+					Button:
+						text: 'D'
+					Button:
+						text: 'U'
+			BoxLayout:
+				orientation: 'vertical'
+				Label: 
+					text: 'SLIDE'
+				GridLayout:
+					cols: 2
+					Button:
+						text: 'L'
+						on_press: root.scroll_slide_left()
+						on_release: root.stop_motors()
+					Button:
+						text: 'R'
+						on_press: root.scroll_slide_right()
+						on_release: root.stop_motors()
+		# BoxLayout:
+		# 	orientation: 'horizontal'
+		# 	spacing: 4
+		# 	padding: 10
+		# 	BoxLayout:
+		# 		orientation: 'vertical'
+		# 		BoxLayout:
+		# 			Label:
+		# 				text: 'Start Pan:'
+		# 			Label:
+		# 				text: "Label"
+		# 		GridLayout:
+		# 			spacing: 4
+		# 			padding: 10
+		# 			cols: 4
+		# 			Button:
+		# 				text: 'SET'
+		# 				on_press: root.set_pan_start()
+		# 	BoxLayout:
+		# 		orientation: 'vertical'
+		# 		BoxLayout:
+		# 			Label:
+		# 				text: 'End Pan:'
+		# 			Label:
+		# 				# id: exposure_label
+		# 				text: "Label"
+		# 		GridLayout:
+		# 			cols: 4
+		# 			spacing: 4
+		# 			padding: 10
+		# 			Button:
+		# 				text: 'SET'
+		# 				on_press: root.set_pan_end()
+					
+		# 	BoxLayout:
+		# 		orientation: 'vertical'
+		# 		BoxLayout:
+		# 			Label: 
+		# 				text: 'Start Tilt:'
+		# 			Label:
+		# 				# id: aperture_label
+		# 				text: "Label"
+		# 		GridLayout:
+		# 			cols: 4
+		# 			spacing: 4
+		# 			padding: 10
+		# 			Button:
+		# 				text: 'D'
+		# 				# on_press: root.decreaseAperture()
+		# 			Button:
+		# 				text: 'U'
+		# 				# on_press: root.increaseAperture()
+		# 	BoxLayout:
+		# 		orientation: 'vertical'
+		# 		BoxLayout:
+		# 			Label: 
+		# 				text: 'End Tilt:'
+		# 			Label:
+		# 				# id: aperture_label
+		# 				text: "Label"
+		# 		GridLayout:
+		# 			cols: 4
+		# 			spacing: 4
+		# 			padding: 10
+		# 			Button:
+		# 				text: 'D'
+		# 				# on_press: root.decreaseAperture()
+		# 			Button:
+		# 				text: 'U'
+		# 				# on_press: root.increaseAperture()
+		# BoxLayout:
+		# 	orientation: 'horizontal'
+		# 	BoxLayout:
+		# 		orientation: 'vertical'
+		# 		BoxLayout:
+		# 			Label:
+		# 				text: 'Slide Direction:'
+		# 		GridLayout:
+		# 			spacing: 4
+		# 			padding: 10
+		# 			cols: 4
+		# 			Button:
+		# 				text: 'LEFT'
+		# 				on_press: root.find_home_left()
+		# 			Button:
+		# 				text: 'RIGHT'
+		# 				on_press: root.find_home_right()
+		# 	BoxLayout:
+		# 		orientation: 'vertical'
+		# 		BoxLayout:
+		# 			Label:
+		# 				id: limit_label
+		# 				text: 'Waiting..'
+		# 		GridLayout:
+		# 			cols: 4
+		# 			spacing: 4
+		# 			padding: 10
+		# 			Button:
+		# 				text: 'Read'
+		# 				on_press: root.checkButtons()
+		# 			Button:
+		# 				text: 'Cancel'
+		# 				on_press: root.cancelReading()
+		# 	BoxLayout:
+		# 		orientation: 'vertical'
+		# 		BoxLayout:
+		# 			Label: 
+		# 				text: 'Slide Delay:'
+		# 			Label:
+		# 				id: slide_delay_label
+		# 				text: "1.5 mm/s"
+		# 		GridLayout:
+		# 			cols: 4
+		# 			spacing: 4
+		# 			padding: 10
+		# 			Button:
+		# 				text: '-'
+		# 				on_press: root.increase_slide_speed()
+		# 			Button:
+		# 				text: '+'
+		# 				on_press: root.decrease_slide_speed()
+		
+		BoxLayout:
+			BoxLayout:
+				orientation: 'vertical'
+				spacing: 5
+				padding: 5
+				Label:
+					text: "Slide Direction:"
+				GridLayout:
+					cols: 2
+					ToggleButton:
+						text: "LEFT"
+						on_press: root.set_slide_left()
+						group: 'direction'
+						state: 'down'
+					ToggleButton:
+						text: "RIGHT"
+						group: 'direction'
+						on_press: root.set_slide_right()
+			Button:
+				text: 'Find Home'
+				on_press: root.find_slide_home()
+
+		BoxLayout:
+			Button:
+				text: 'SLIDE'
+				on_press: root.turn_slide_on()
+			Button: 
+				text: "PAN"
+				on_press: root.turn_pan_on()
+			Button:
+				text: "Stop"
+				on_press: root.turn_stepper_off()
+		BoxLayout:
+			Label:
+				id: stepper_value_label
+				text: "Stepper speed"
+			Slider:
+				min: 1
+				max: 100
+				step: 1
+				id: stepper_speed_slider
+				on_value: root.change_stepper_speed()
+		BoxLayout:
+			Label:
+				id: pan_value_label
+				text: "Pan speed"
+			Slider:
+				min: 1
+				max: 100
+				step: 1
+				id: pan_speed_slider
+				on_value: root.change_pan_speed()
+
+		
+		BoxLayout: 
+			orientation: 'horizontal'
+			spacing: 15
+			padding: 15
+			Button:
+				text: 'BACK'
+				on_press: root.manager.current = 'home'
+			Button:
+				text: 'EXIT'
+				on_press: root.endProgram()
+			Button:
+				text: 'NEXT'
+				on_press: root.manager.current = 'timelapse'

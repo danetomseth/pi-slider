@@ -1,0 +1,64 @@
+#:kivy 1.0.9
+#:include timelapsesettings.kv
+#:include actions.kv
+#:include camerasettings.kv
+#:include motorsettings.kv
+#:include programrunning.kv
+#:include homescreen.kv
+#:include configuresettings.kv
+
+<Manager>:
+	canvas.before:
+        Color:
+            rgb: .2, .2, .2
+        Rectangle:
+            size: self.size
+            source: 'data/background.png'
+    id: screen_manager
+    timelapse_screen: timelapse_screen
+    camera_screen: camera_screen
+    motor_settings: motor_settings
+    actions_screen: actions_screen
+    program_screen: program_screen
+    home_screen: home_screen
+    config_screen: config_screen
+    HomeScreen:
+        id: home_screen
+        name: 'home'
+        manager: screen_manager
+    MotorSettings:
+        id: motor_settings
+        name: 'motor'
+        manager: screen_manager
+    TimelapseSettings:
+        id: timelapse_screen
+        name: 'timelapse'
+        manager: screen_manager
+    ProgramActions:
+    	id: actions_screen
+    	name: 'actions'
+    	manager: screen_manager
+    CameraSettings:
+        id: camera_screen
+        name: 'camera'
+        manager: screen_manager
+    ProgramRunning:
+        id: program_screen
+        name: 'program'
+        manager: screen_manager
+    ConfigureSettings:
+        id: config_screen
+        name: 'config'
+        manager: screen_manager
+
+   
+
+
+
+
+
+
+    
+
+
+

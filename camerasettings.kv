@@ -1,0 +1,90 @@
+#:kivy 1.0.9
+<CameraSettings>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 2
+		canvas:
+			Color: 
+				rgba: 0, 0, 0, 1
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		BoxLayout:
+			padding: 5
+			spacing: 5
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					id: ramp_start_time_label
+					text: root.rampStartTime
+				BoxLayout:
+					
+					Button:
+						text: '-'
+						on_press: root.rampStartEarly()
+					Button:
+						text: '+'
+						on_press: root.rampStartLater()
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					id: ramp_duration_time_label
+					text: root.rampDuration
+				BoxLayout:
+					
+					Button:
+						text: "-"
+						on_press: root.rampDecreaseDuration()
+					Button:
+						text: "+"
+						on_press: root.rampIncreaseDuration()
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					id: exposure_comp_label
+					text: root.exposure_comp
+				BoxLayout:
+					Button:
+						text: "-"
+						on_press: root.decrease_exp_comp()
+					Button:
+						text: "+"
+						on_press: root.increase_exp_comp()
+		BoxLayout:
+			orientation: 'horizontal'
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						id: bulb_time_label
+						text: root.bulbTime
+				GridLayout:
+					padding: 10
+					spacing: 10
+					cols: 4
+					Button:
+						text: '-'
+						on_press: root.decreaseBulb()
+					Button:
+						text: '+'
+						on_press: root.increaseBulb()
+			BoxLayout:
+				orientation: 'vertical'
+				Label: 
+					text: "Test Pics"
+				Button:
+					text: 'Pre Ramp'
+					on_press: root.openShutter()
+				Button:
+					text: 'Post Ramp'
+					on_press: root.closeShutter()
+		BoxLayout:
+			orientation: 'horizontal'
+			size_hint: 1, 0.5
+			spacing: 15
+			Button:
+				text: "BACK"
+				on_press: root.manager.current = 'home'
+			Button:
+				text: "Next"
+				on_press: root.manager.current = 'actions' 

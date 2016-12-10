@@ -1,0 +1,905 @@
+#:kivy 1.0.9
+
+
+<TimelapseSettings>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 10
+		BoxLayout:
+			orientation: 'horizontal'
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.width, 10 
+			BoxLayout:
+				orientation: 'vertical'
+				spacing: 10
+				BoxLayout:
+					Label:
+						text: "Interval Time:"
+					Label:
+						id: interval_label
+						halign: 'left'
+						text: root.interval_text
+				GridLayout:
+					cols: 4
+					spacing: 10
+					Label:
+						text: ""
+					Button:
+						text: "-"
+						size_hint: None, None
+						width: 100
+						height: 100
+						on_press: root.decreaseInterval()
+					Button:
+						text: "+"
+						size_hint: None, None
+						width: 100
+						height: 100
+						on_press: root.increaseInterval()
+					Label:
+						text: ""
+			BoxLayout:
+				orientation: 'vertical'
+				spacing: 10
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 10, self.height
+						pos: self.pos
+				BoxLayout:
+					Label:
+						text: "Duration:"
+					Label:
+						id: event_duration_label
+						text: root.eventDuration
+				GridLayout:
+					spacing: 10
+					cols: 4
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: "-"
+						on_press: root.decreaseDuration()
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: "+"
+						on_press: root.increaseDuration()
+					Label:
+						text: ''
+			GridLayout:
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 10, self.height
+						pos: self.pos
+				cols: 2
+				Label:
+					text: ''
+				Label:
+					text: ''
+				Label: 
+					size_hint_y: None
+					height: 100
+					text: 'Duration:'
+				Label:
+					id: clip_duration_label
+					text: root.clipDuration
+				Label:
+					size_hint_y: None
+					height: 100
+					text: 'Pictures:'
+				Label:
+					id: picture_count_label
+					text: root.pictureCount
+				Label:
+					text: ''
+				Label:
+					text: ''
+		BoxLayout:
+			orientation: 'horizontal'
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.width, 10
+			spacing: 10
+			BoxLayout:
+				orientation: 'vertical'
+			    Label:
+        		    text: 'Ramping'
+        		BoxLayout:
+        			size_hint: 1, None
+        			width: 50
+        			Label:
+        				text: ''
+	        		ToggleButton:
+	        			size_hint: None, None
+	        			size: 50, 50
+	            		active: False
+		            	on_press: root.toggleRamping()
+		            Label:
+		            	text: ''
+			    BoxLayout:
+
+			BoxLayout:
+				orientation: 'vertical'
+				GridLayout: 
+					cols: 2
+					Label:
+						text: "Ramp Delay:"
+					Label:
+						id: ramp_start_time_label
+						text: root.rampStartTime
+				GridLayout:
+					spacing: 10
+					cols: 4
+					Label:
+						text: ''
+					Button:
+						id: ramp_disabled_3
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: '-'
+						on_press: root.rampStartEarly()
+						disabled: True
+					Button:
+						id: ramp_disabled_4
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: '+'
+						on_press: root.rampStartLater()
+						disabled: True
+					Label:
+						text: ''
+			BoxLayout:
+				orientation: 'vertical'
+				spacing: 10
+				GridLayout:
+					cols: 4
+					Label:
+						text: "Ramp Duration:"
+					Label:
+						id: ramp_duration_time_label
+						text: root.rampDuration
+				GridLayout:
+					spacing: 10
+					cols: 4
+					Label:
+						text: ''
+					Button:
+						id: ramp_disabled_1
+						text: "-"
+						size_hint: None, None
+						width: 100
+						height: 100
+						on_press: root.rampDecreaseDuration()
+						disabled: True
+					Button:
+						id: ramp_disabled_2
+						text: "+"
+						size_hint: None, None
+						width: 100
+						height: 100
+						on_press: root.rampIncreaseDuration()
+						disabled: True
+					Label:
+						text: ''
+		# BoxLayout:
+		# 	orientation: 'vertical'
+		# 	BoxLayout: 
+		# 		orientation: 'horizontal'
+		# 		Label: 
+		# 			text: 'Duration:'
+		# 		Label:
+		# 			id: clip_duration_label
+		# 			text: root.clipDuration
+		# 	BoxLayout:
+		# 		orientation: 'horizontal'
+		# 		Label:
+		# 			text: 'Pictures:'
+		# 		Label:
+		# 			id: picture_count_label
+		# 			text: root.pictureCount
+		BoxLayout:
+			orientation: 'vertical'
+		BoxLayout:
+			size_hint: 1, None
+			height: 100 
+			Label:
+				text: ''
+			Button:
+				size_hint: None, 1
+				width: 200
+				text: "Next"
+				on_press: root.manager.current = 'actions'
+
+<SliderSettings>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 5
+		canvas:
+			Color: 
+				rgba: 0, 0, 0, 1
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		BoxLayout:
+			orientation: 'horizontal'
+			padding: [5, 5]
+			BoxLayout:
+				orientation: 'vertical'
+				padding: [5, 5]
+			    Label:
+        		    text: 'Ramping'
+        		Switch:
+            		active: True
+	            	on_touch_down: root.toggleRamping()
+			BoxLayout:
+				orientation: 'vertical'
+				padding: [5, 5]
+				Label:
+					text: "Ramp Delay"
+				Label:
+					id: ramp_start_time_label
+					text: root.rampStartTime
+				BoxLayout:
+					orientation: 'horizontal'
+					padding: [5, 5]
+					Button:
+						text: '-'
+						on_press: root.rampStartEarly()
+					Button:
+						text: '+'
+						on_press: root.rampStartLater()
+			BoxLayout:
+				orientation: 'vertical'
+				padding: [5, 5]
+				Label:
+					text: "Ramp Duration"
+				Label:
+					id: ramp_duration_time_label
+					text: root.rampDuration
+				BoxLayout:
+					orientation: 'horizontal'
+					padding: [5, 5] 
+					Button:
+						text: "-"
+						on_press: root.rampDecreaseDuration()
+					Button:
+						text: "+"
+						on_press: root.rampIncreaseDuration()
+		BoxLayout:
+			orientation: 'horizontal'
+			padding: [5, 5]
+			Label: 
+				text: "Shutter"
+			BoxLayout:
+				orientation: 'vertical'
+				padding: [5, 5]
+				Button:
+					text: 'Open'
+					on_press: root.openShutter()
+				Button:
+					text: 'Close'
+					on_press: root.closeShutter()
+		BoxLayout:
+			orientation: 'horizontal'
+			padding: [5, 5]
+			Button:
+				text: "Prev"
+				on_press: root.manager.current = 'timelaspe'
+			Button:
+				text: "Next"
+				on_press: root.manager.current = 'actions'  
+
+
+<ProgramActions>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 5
+		BoxLayout:
+			orientation: 'horizontal'
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.width, 10 
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						text: 'Bulb Delay:'
+					Label:
+						id: shutter_time_label
+						text: root.shutterTime
+				GridLayout:
+					spacing: 10
+					cols: 4
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						height: 100
+						width: 100
+						text: '-'
+						on_press: root.decreaseShutter()
+					Button:
+						size_hint: None, None
+						height: 100
+						width: 100
+						text: '+'
+						on_press: root.increaseShutter()
+					Label:
+						text: ''
+			BoxLayout:
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 10, self.height
+						pos: self.pos
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						text: 'Exposure:'
+					Label:
+						id: exposure_label
+						text: root.exposureIndex
+				GridLayout:
+					cols: 4
+					spacing: 10
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: '-'
+						on_press: root.decreaseExposure()
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: '+'
+						on_press: root.increaseExposure()
+					Label:
+						text: ''
+			BoxLayout:
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 10, self.height
+						pos: self.pos
+				orientation: 'vertical'
+				BoxLayout:
+					Label: 
+						text: 'Aperture:'
+					Label:
+						id: aperture_label
+						text: root.aperture
+				GridLayout:
+					cols: 4
+					spacing: 10
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: '-'
+						on_press: root.decreaseAperture()
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: '+'
+						on_press: root.increaseAperture()
+					Label:
+						text: ''
+		BoxLayout:
+			orientation: 'horizontal'
+			size_hint: 1, None
+			spacing: 10
+			padding: 10
+			height: 100
+			Label:
+				text: ''
+			Button:
+				text: "Test First"
+			Button:
+				text: "Test Last"
+			Button:
+				text: "Test Shutter"
+			Label:
+				text: ""
+		BoxLayout:
+
+		BoxLayout: 
+			orientation: 'horizontal'
+			size_hint: 1, None
+			height: 100 
+			Button:
+				text: 'PREV'
+				on_press: root.manager.current = 'timelaspe'
+			
+			Button:
+				text: 'START'
+				on_press: root.startProgram()
+			Button:
+				text: 'EXIT'
+				on_press: root.endProgram()
+			Button:
+				text: 'NEXT'
+				on_press: root.manager.current = 'motor'
+
+<MotorSettings>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 5
+		BoxLayout:
+			orientation: 'horizontal'
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.width, 5 
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						text: 'Start Pan:'
+					Label:
+						text: "Label"
+				GridLayout:
+					spacing: 10
+					cols: 4
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						height: 100
+						width: 100
+						text: 'L'
+						on_press: root.pan_left()
+					Button:
+						size_hint: None, None
+						height: 100
+						width: 100
+						text: 'R'
+						on_press: root.pan_right()
+					Label:
+						text: ''
+			BoxLayout:
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 2, self.height
+						pos: self.pos
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						text: 'End Pan:'
+					Label:
+						# id: exposure_label
+						text: "Label"
+				GridLayout:
+					cols: 4
+					spacing: 10
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'L'
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'R'
+					Label:
+						text: ''
+			BoxLayout:
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 5, self.height
+						pos: self.pos
+				orientation: 'vertical'
+				BoxLayout:
+					Label: 
+						text: 'Start Tilt:'
+					Label:
+						# id: aperture_label
+						text: "Label"
+				GridLayout:
+					cols: 4
+					spacing: 10
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'D'
+						# on_press: root.decreaseAperture()
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'U'
+						# on_press: root.increaseAperture()
+					Label:
+						text: ''
+			BoxLayout:
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 2, self.height
+						pos: self.pos
+				orientation: 'vertical'
+				BoxLayout:
+					Label: 
+						text: 'End Tilt:'
+					Label:
+						# id: aperture_label
+						text: "Label"
+				GridLayout:
+					cols: 4
+					spacing: 10
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'D'
+						# on_press: root.decreaseAperture()
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'U'
+						# on_press: root.increaseAperture()
+					Label:
+						text: ''
+		BoxLayout:
+			orientation: 'horizontal'
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.width, 5 
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						text: 'Slide Direction:'
+				GridLayout:
+					spacing: 10
+					cols: 4
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						height: 100
+						width: 100
+						text: 'LEFT'
+					Button:
+						size_hint: None, None
+						height: 100
+						width: 100
+						text: 'RIGHT'
+					Label:
+						text: ''
+			BoxLayout:
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 2, self.height
+						pos: self.pos
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						text: 'Step Size:'
+					Label:
+						# id: exposure_label
+						text: "0.1 mm"
+				GridLayout:
+					cols: 4
+					spacing: 10
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: '-'
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: '+'
+					Label:
+						text: ''
+			BoxLayout:
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 5, self.height
+						pos: self.pos
+				orientation: 'vertical'
+				BoxLayout:
+					Label: 
+						text: 'Step Speed:'
+					Label:
+						# id: aperture_label
+						text: "1.5 mm/s"
+				GridLayout:
+					cols: 4
+					spacing: 10
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: '-'
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: '+'
+					Label:
+						text: ''
+		BoxLayout:
+			orientation: 'vertical'
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					size: 2, self.height
+					pos: self.pos
+			Label:
+				font_size: 48
+				text: "Motor Controls"
+		BoxLayout:
+			orientation: 'horizontal'
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.width, 5 
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						text: 'PAN'
+				GridLayout:
+					spacing: 10
+					cols: 4
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						height: 100
+						width: 100
+						text: 'L'
+						on_press: root.pan_left()
+						on_release: root.stop_motors()
+					Button:
+						size_hint: None, None
+						height: 100
+						width: 100
+						text: 'R'
+						on_press: root.pan_right()
+						on_release: root.stop_motors()
+					Label:
+						text: ''
+			BoxLayout:
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 2, self.height
+						pos: self.pos
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						text: 'TILT'
+				GridLayout:
+					cols: 4
+					spacing: 10
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'D'
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'U'
+					Label:
+						text: ''
+			BoxLayout:
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 2, self.height
+						pos: self.pos
+				orientation: 'vertical'
+				BoxLayout:
+					Label: 
+						text: 'SLIDE'
+				GridLayout:
+					cols: 4
+					spacing: 10
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'R'
+						on_press: root.slide_left()
+						on_release: root.stop_motors()
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'F'
+						on_press: root.slide_right()
+						on_release: root.stop_motors()
+					Label:
+						text: ''
+			BoxLayout:
+				canvas:
+					Color: 
+						rgba: 1, 1, 1, 1
+					Rectangle:
+						size: 2, self.height
+						pos: self.pos
+				orientation: 'vertical'
+				BoxLayout:
+					Label: 
+						text: 'End Tilt:'
+					Label:
+						# id: aperture_label
+						text: "Label"
+				GridLayout:
+					cols: 4
+					spacing: 10
+					Label:
+						text: ''
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'D'
+						# on_press: root.decreaseAperture()
+					Button:
+						size_hint: None, None
+						width: 100
+						height: 100
+						text: 'U'
+						# on_press: root.increaseAperture()
+					Label:
+						text: ''
+		
+		BoxLayout: 
+			orientation: 'horizontal'
+			size_hint: 1, None
+			height: 100 
+			Button:
+				text: 'PREV'
+				on_press: root.manager.current = 'actions'
+			Button:
+				text: 'NEXT'
+				on_press: root.manager.current = 'motor'
+			Button:
+				text: 'START'
+				on_press: root.startProgram()
+			Button:
+				text: 'EXIT'
+				on_press: root.endProgram()
+
+<Manager>:
+	canvas.before:
+        Color:
+            rgb: .2, .2, .2
+        Rectangle:
+            size: self.size
+            source: 'data/background.png'
+    id: screen_manager
+    timelapse_screen: timelapse_screen
+    camera_screen: camera_screen
+    motor_settings: motor_settings
+    actions_screen: actions_screen
+    TimelapseSettings:
+        id: timelapse_screen
+        name: 'timelaspe'
+        manager: screen_manager
+    ProgramActions:
+    	id: actions_screen
+    	name: 'actions'
+    	manager: screen_manager
+    SliderSettings:
+        id: camera_screen
+        name: 'camera'
+        manager: screen_manager
+    
+	MotorSettings:
+		id: motor_settings
+		name: 'motor'
+		manager: screen_manager
+
+   
+
+
+
+# <MainWindow>:
+# 	orientation: 'vertical'
+# 	canvas:
+# 		Color: 
+# 			rgba: 0, 0, 0, 1
+# 		Rectangle:
+# 			pos: self.pos
+# 			size: self.size
+# 	Label:
+# 		text: "Timelapse Settings"
+# 		color: 1,1,1,1
+# 	TimelapseSettings:
+# 		id: timelapse_settings
+# 	BoxLayout:
+# 		orientation: "horizontal"
+# 		size_hint_y: None
+# 		height: 5
+# 		canvas:
+# 			Color: 
+# 				rgba: 1, 1, 1, 1
+# 			Rectangle:
+# 				pos: self.pos
+# 				size: self.size
+# 	SliderSettings:
+# 		id: slider_settings
+# 	Label:
+# 		text: "Program Actions"
+# 		color: 1,1,1,1
+# 	ProgramActions:
+# 		id: program_actions
+# 	Label:
+# 		text: "Bottom"
+
+
+    
+
+
+

@@ -1,0 +1,410 @@
+#:kivy 1.0.9
+
+
+<TimelapseSettings>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: [5, 5]
+		canvas:
+			Color: 
+				rgba: 0, 0, 0, 1
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		BoxLayout:
+			orientation: 'horizontal'
+			padding: [5, 5]
+			
+			BoxLayout:
+				orientation: 'vertical'
+				padding: [5, 5]
+				spacing: [5, 5]
+				Label:
+					text: "Interval Time"
+				Label:
+					id: interval_label
+					text: root.interval_text
+				BoxLayout:
+					orientation: 'horizontal'
+					padding: [5, 5]
+					spacing: [5, 5] 
+					Button:
+						text: "-"
+						on_press: root.decreaseInterval()
+					Button:
+						text: "+"
+						on_press: root.increaseInterval()
+			BoxLayout:
+				orientation: 'vertical'
+				padding: [5, 5]
+				Label:
+					text: "Event Duration"
+				Label:
+					id: event_duration_label
+					text: root.eventDuration
+				BoxLayout:
+					orientation: 'horizontal'
+					padding: [5, 5] 
+					Button:
+						text: "-"
+						on_press: root.decreaseDuration()
+					Button:
+						text: "+"
+						on_press: root.increaseDuration()
+		BoxLayout:
+			orientation: 'vertical'
+			BoxLayout: 
+				orientation: 'horizontal'
+				Label: 
+					text: 'Duration:'
+				Label:
+					id: clip_duration_label
+					text: root.clipDuration
+			BoxLayout:
+				orientation: 'horizontal'
+				Label:
+					text: 'Pictures:'
+				Label:
+					id: picture_count_label
+					text: root.pictureCount
+		Button:
+			text: "Next"
+			on_press: root.manager.current = 'camera'
+
+<SliderSettings>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 5
+		canvas:
+			Color: 
+				rgba: 0, 0, 0, 1
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		BoxLayout:
+			orientation: 'horizontal'
+			padding: [5, 5]
+			BoxLayout:
+				orientation: 'vertical'
+				padding: [5, 5]
+				# Label:
+				# 	text: "Ramp Status"
+				# Label:
+				# 	id: ramping_label
+				# 	text: root.rampActive
+				# BoxLayout:
+				# 	orientation: 'horizontal'
+				# 	padding: [5, 5]
+				# 	Button:
+				# 		text: 'OFF'
+				# 		disabled: root.rampActive
+				# 		on_press: root.rampingOff()
+				# 	Button:
+				# 		text: 'ON'
+				# 		disabled: root.
+				# 		on_press: root.rampingOn()
+			    Label:
+        		    text: 'Ramping'
+        		Switch:
+            		active: True
+	            	on_press: root.toggleRamping()
+			BoxLayout:
+				orientation: 'vertical'
+				padding: [5, 5]
+				Label:
+					text: "Ramp Start Time"
+				Label:
+					id: ramp_start_time_label
+					text: root.rampStartTime
+				BoxLayout:
+					orientation: 'horizontal'
+					padding: [5, 5]
+					Button:
+						text: '-'
+						on_press: root.rampStartEarly()
+					Button:
+						text: '+'
+						on_press: root.rampStartLater()
+			BoxLayout:
+				orientation: 'vertical'
+				padding: [5, 5]
+				Label:
+					text: "Ramp Duration"
+				Label:
+					id: ramp_duration_time_label
+					text: root.rampDuration
+				BoxLayout:
+					orientation: 'horizontal'
+					padding: [5, 5] 
+					Button:
+						text: "-"
+						on_press: root.rampDecreaseDuration()
+					Button:
+						text: "+"
+						on_press: root.rampIncreaseDuration()
+		BoxLayout:
+			orientation: 'horizontal'
+			padding: [5, 5]
+			Label: 
+				text: "Shutter"
+			BoxLayout:
+				orientation: 'vertical'
+				padding: [5, 5]
+				Button:
+					text: 'Open'
+					on_press: root.openShutter()
+				Button:
+					text: 'Close'
+					on_press: root.closeShutter()
+		BoxLayout:
+			orientation: 'horizontal'
+			padding: [5, 5]
+			Button:
+				text: "Prev"
+				on_press: root.manager.current = 'timelaspe'
+			Button:
+				text: "Next"
+				on_press: root.manager.current = 'actions'  
+
+
+<ProgramActions>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 5
+		canvas:
+			Color: 
+				rgba: 0, 0, 0, 1
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		BoxLayout:
+			orientation: 'horizontal'
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'Bulb Delay:'
+				Label:
+					id: shutter_time_label
+					text: root.shutterTime
+				BoxLayout:
+					orientation: 'horizontal'
+					padding: [5, 5]
+					Button:
+						text: '-'
+						on_press: root.decreaseShutter()
+					Button:
+						text: '+'
+						on_press: root.increaseShutter()
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'Exposure:'
+				Label:
+					id: exposure_label
+					text: root.exposureIndex
+				BoxLayout:
+					orientation: 'horizontal'
+					padding: [5, 5]
+					Button:
+						text: '-'
+						on_press: root.decreaseExposure()
+					Button:
+						text: '+'
+						on_press: root.increaseExposure()
+			BoxLayout:
+				orientation: 'vertical'
+				Label: 
+					text: 'Aperture:'
+				Label:
+					id: aperture_label
+					text: root.aperture
+				BoxLayout:
+					orientation: 'horizontal'
+					padding: [5, 5]
+					Button:
+						text: '-'
+						on_press: root.decreaseAperture()
+					Button:
+						text: '+'
+						on_press: root.increaseAperture()
+		BoxLayout:
+			orientation: 'horizontal'
+			Label:
+				text: "Picture Count: "
+			Label:
+				id: total_pictures_label
+				text: "0"
+		BoxLayout: 
+			orientation: 'horizontal'
+			Button:
+				text: 'PREV'
+				on_press: root.manager.current = 'camera'
+			Button:
+				text: 'NEXT'
+				on_press: root.manager.current = 'motor'
+			Button:
+				text: 'TEST PICTURE'
+				on_press: root.takePicture()
+			Button:
+				text: 'START'
+				on_press: root.startProgram()
+			Button:
+				text: 'EXIT'
+				on_press: root.endProgram()
+
+<MotorSettings>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 5
+		BoxLayout: 
+			orientation: 'horizontal'
+			spacing: 5
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'Slide Distance'
+				BoxLayout: 
+					orientation: 'horizontal'
+					Button:
+						text: '-'
+					Button
+						text: '+'
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'Slide Speed'
+				BoxLayout: 
+					orientation: 'horizontal'
+					Button:
+						text: '-'
+					Button
+						text: '+'
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'Pan Distance'
+				BoxLayout: 
+					orientation: 'horizontal'
+					Button:
+						text: '-'
+					Button
+						text: '+'
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'Pan Speed'
+				BoxLayout: 
+					orientation: 'horizontal'
+					Button:
+						text: '-'
+					Button
+						text: '+'
+		BoxLayout:
+			orientation: 'horizontal'
+			spacing: 5
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'Slide Distance'
+				BoxLayout: 
+					orientation: 'horizontal'
+					Button:
+						text: '-'
+					Button
+						text: '+'
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'Slide Speed'
+				BoxLayout: 
+					orientation: 'horizontal'
+					Button:
+						text: '-'
+					Button
+						text: '+'
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'Pan Distance'
+				BoxLayout: 
+					orientation: 'horizontal'
+					Button:
+						text: '-'
+					Button
+						text: '+'
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'Pan Speed'
+				BoxLayout: 
+					orientation: 'horizontal'
+					Button:
+						text: '-'
+					Button
+						text: '+'
+
+<Manager>:
+    id: screen_manager
+    timelapse_screen: timelapse_screen
+    camera_screen: camera_screen
+    motor_settings: motor_settings
+    actions_screen: actions_screen
+    TimelapseSettings:
+        id: timelapse_screen
+        name: 'timelaspe'
+        manager: screen_manager
+    SliderSettings:
+        id: camera_screen
+        name: 'camera'
+        manager: screen_manager
+    ProgramActions:
+    	id: actions_screen
+    	name: 'actions'
+    	manager: screen_manager
+	MotorSettings:
+		id: motor_settings
+		name: 'motor'
+		manager: screen_manager
+
+   
+
+
+
+# <MainWindow>:
+# 	orientation: 'vertical'
+# 	canvas:
+# 		Color: 
+# 			rgba: 0, 0, 0, 1
+# 		Rectangle:
+# 			pos: self.pos
+# 			size: self.size
+# 	Label:
+# 		text: "Timelapse Settings"
+# 		color: 1,1,1,1
+# 	TimelapseSettings:
+# 		id: timelapse_settings
+# 	BoxLayout:
+# 		orientation: "horizontal"
+# 		size_hint_y: None
+# 		height: 5
+# 		canvas:
+# 			Color: 
+# 				rgba: 1, 1, 1, 1
+# 			Rectangle:
+# 				pos: self.pos
+# 				size: self.size
+# 	SliderSettings:
+# 		id: slider_settings
+# 	Label:
+# 		text: "Program Actions"
+# 		color: 1,1,1,1
+# 	ProgramActions:
+# 		id: program_actions
+# 	Label:
+# 		text: "Bottom"
+
+
+    
+
+
+

@@ -1,0 +1,23 @@
+<HomeScreen>:
+	GridLayout:
+		cols: 3
+		spacing: 10
+		padding: 10
+		Button:
+			text: "Timelapse"
+			on_press: root.manager.current = 'timelapse'
+		Button:
+			text: "Slide/Pan"
+			on_press: root.manager.current = 'motor'
+		Button:
+			text: "Camera"
+			on_press: root.manager.current = 'camera'
+		Button:
+			text: "Settings"
+			on_press: root.manager.current = 'actions'
+		Button:
+			text: "Configure"
+			on_press: root.manager.current = 'config'
+		Button:
+			text: "Exit"
+			on_press: root.endProgram()

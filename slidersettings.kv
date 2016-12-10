@@ -1,0 +1,86 @@
+<SliderSettings>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 2
+		canvas:
+			Color: 
+				rgba: 0, 0, 0, 1
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		BoxLayout:
+			orientation: 'horizontal'
+			BoxLayout:
+				orientation: 'vertical'
+			    Label:
+        		    text: 'Ramping'
+        		Switch:
+            		active: True
+	            	on_touch_down: root.toggleRamping()
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: "Ramp Delay"
+				Label:
+					id: ramp_start_time_label
+					text: root.rampStartTime
+				BoxLayout:
+					orientation: 'horizontal'
+					Button:
+						text: '-'
+						on_press: root.rampStartEarly()
+					Button:
+						text: '+'
+						on_press: root.rampStartLater()
+			BoxLayout:
+				orientation: 'vertical'
+				padding: [5, 5]
+				Label:
+					text: "Ramp Duration"
+				Label:
+					id: ramp_duration_time_label
+					text: root.rampDuration
+				BoxLayout:
+					orientation: 'horizontal'
+					Button:
+						text: "-"
+						on_press: root.rampDecreaseDuration()
+					Button:
+						text: "+"
+						on_press: root.rampIncreaseDuration()
+		BoxLayout:
+			orientation: 'horizontal'
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					Label:
+						id: bulb_time_label
+						text: root.bulbTime
+				GridLayout:
+					padding: 10
+					spacing: 10
+					cols: 4
+					Button:
+						text: '-'
+						on_press: root.decreaseBulb()
+					Button:
+						text: '+'
+						on_press: root.increaseBulb()
+			BoxLayout:
+				orientation: 'vertical'
+				Label: 
+					text: "Test Pics"
+				Button:
+					text: 'Pre Ramp'
+					on_press: root.openShutter()
+				Button:
+					text: 'Post Ramp'
+					on_press: root.closeShutter()
+		BoxLayout:
+			orientation: 'horizontal'
+			Button:
+				text: "BACK"
+				on_press: root.manager.current = 'home'
+			Button:
+				text: "NEXT"
+				on_press: root.manager.current = 'actions' 

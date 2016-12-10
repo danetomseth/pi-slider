@@ -1,0 +1,98 @@
+#:kivy 1.0.9
+<MotorSettings>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 5
+		padding: 5
+		BoxLayout:
+			orientation: 'horizontal'
+			Label:
+				text: 'Direction'
+
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: 'PAN'
+				GridLayout:
+					cols: 2
+					ToggleButton:
+						text: 'LEFT'
+						on_press: root.set_pan_left()
+						group: "pan_direction"
+						state: 'down'
+					ToggleButton:
+						text: 'RIGHT'
+						on_press: root.set_pan_right()
+						group: "pan_direction"
+			BoxLayout:
+				orientation: 'vertical'
+				Label: 
+					text: 'SLIDE'
+				GridLayout:
+					cols: 2
+					ToggleButton:
+						text: 'LEFT'
+						on_press: root.set_slide_left()
+						group: 'slide_direction'
+					ToggleButton:
+						text: 'RIGHT'
+						on_press: root.set_slide_right()
+						group: 'slide_direction'
+		
+		BoxLayout:
+			Label:
+				text: 'MOVE'
+			Button:
+				text: 'PAN'
+				on_press: root.turn_pan_on()
+			Button:
+				text: 'SLIDE'
+				on_press: root.turn_slide_on()
+			Button:
+				text: 'Find Home'
+				on_press: root.find_slide_home()
+		BoxLayout:
+			Label:
+				id: stepper_value_label
+				text: "Stepper speed"
+			Slider:
+				min: 1
+				max: 50
+				step: 1
+				id: stepper_speed_slider
+				on_value: root.change_stepper_speed()
+		BoxLayout:
+			Label:
+				id: pan_value_label
+				text: "Pan speed"
+			Slider:
+				min: 1
+				max: 50
+				step: 1
+				id: pan_speed_slider
+				on_value: root.change_pan_speed()
+		BoxLayout:
+			Label:
+				id: step_number_label
+				text: "Number of Steps"
+			Slider:
+				min: 50
+				max: 800
+				step: 50
+				id: step_number_slider
+				on_value: root.change_step_number()
+
+		
+		BoxLayout: 
+			orientation: 'horizontal'
+			spacing: 15
+			padding: 15
+			Button:
+				text: 'BACK'
+				on_press: root.manager.current = 'home'
+			Button:
+				text: 'EXIT'
+				on_press: root.endProgram()
+			Button:
+				text: 'NEXT'
+				on_press: root.manager.current = 'timelapse'

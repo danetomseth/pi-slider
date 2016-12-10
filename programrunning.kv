@@ -1,0 +1,50 @@
+#:kivy 1.0.9
+<ProgramRunning>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 5
+		padding: 5
+		BoxLayout:
+			orientation: 'horizontal'
+			spacing: 4
+			padding: 10
+			Button:
+				text: "START"
+				background_color: (0, 1, 0, 1)
+				on_press: root.start_program()
+		
+			Button:
+				text: "STOP"
+				background_color: (1, 0, 0, 1)
+				on_press: root.stop_program()
+		BoxLayout:
+			orientation: 'horizontal'
+			spacing: 4
+			padding: 10
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: "Total Pictures"
+				Label:
+					text: '0'
+					id: total_picture_count_label
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					text: "Time Remaining"
+				Label:
+					text: '60min'
+					id: time_remaining_label
+
+		
+		BoxLayout: 
+			orientation: 'horizontal'
+			size_hint: 1, 0.5
+			spacing: 15
+			padding: 15
+			Button:
+				text: 'BACK'
+				on_press: root.manager.current = 'home'
+			Button:
+				text: 'EXIT'
+				on_press: root.exit_program()

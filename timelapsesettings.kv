@@ -1,0 +1,144 @@
+#:kivy 1.0.9
+
+
+
+<TimelapseSettings>:
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: 2
+		BoxLayout:
+			orientation: 'horizontal'
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.width, 2 
+			Label:
+				id: interval_label
+				text: root.interval_text
+			Slider:
+				min: 1
+				max: 60
+				step: 1
+				id: time_interval_slider
+				on_value: root.change_time_interval()
+		BoxLayout:
+			orientation: 'horizontal'
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.width, 2 
+			Label:
+				id: event_duration_label
+				text: root.eventDuration
+			Slider:
+				min: 10
+				max: 240
+				step: 5
+				id: duration_slider
+				on_value: root.change_event_duration()
+
+		GridLayout:
+			cols: 2
+			spacing: 4
+			padding: 10
+			Label:
+				id: clip_duration_label
+				text: root.clipDuration
+			Label:
+				id: picture_count_label
+				text: root.pictureCount
+		GridLayout:
+			cols: 4
+			canvas:
+				Color: 
+					rgba: 1, 1, 1, 1
+				Rectangle:
+					pos: self.pos
+					size: self.width, 2
+			spacing: 10
+			padding: 10
+    		ToggleButton:
+        		# active: False
+            	on_press: root.toggleRamping()
+            	text: "Ramping OFF"
+            	id: ramp_button
+            Label:
+            	text: ''
+            ToggleButton:
+            	on_press: root.ramp_sunset()
+            	text: "Sunset"
+            	state: 'down'
+            	group: "rampType"
+            	id: sunset_button
+            	disabled: True
+            ToggleButton:
+            	on_press: root.ramp_sunrise()
+            	text: "Sunrise"
+            	id: sunrise_button
+            	group: "rampType"
+            	disabled: True
+
+			# BoxLayout:
+			# 	orientation: 'vertical'
+			# 	GridLayout: 
+			# 		cols: 2
+			# 		Label:
+			# 			text: "Ramp Delay:"
+			# 		Label:
+			# 			id: ramp_start_time_label
+			# 			text: root.rampStartTime
+			# 	GridLayout:
+			# 		spacing: 4
+			# 		padding: 10
+			# 		cols: 4
+			# 		Button:
+			# 			id: ramp_disabled_3
+			# 			text: '-'
+			# 			on_press: root.rampStartEarly()
+			# 			disabled: True
+			# 		Button:
+			# 			id: ramp_disabled_4
+			# 			text: '+'
+			# 			on_press: root.rampStartLater()
+			# 			disabled: True
+			# BoxLayout:
+			# 	orientation: 'vertical'
+			# 	GridLayout:
+			# 		cols: 4
+			# 		Label:
+			# 			text: "Ramp Duration:"
+			# 		Label:
+			# 			id: ramp_duration_time_label
+			# 			text: root.rampDuration
+			# 	GridLayout:
+			# 		spacing: 4
+			# 		padding: 10
+			# 		cols: 4
+			# 		Button:
+			# 			id: ramp_disabled_1
+			# 			text: "-"
+			# 			on_press: root.rampDecreaseDuration()
+			# 			disabled: True
+			# 		Button:
+			# 			id: ramp_disabled_2
+			# 			text: "+"
+			# 			on_press: root.rampIncreaseDuration()
+			# 			disabled: True
+		
+		BoxLayout:
+			orientation: 'vertical'
+		BoxLayout:
+			size_hint: 1, 0.75
+			spacing: 10
+			padding: 10
+			Button:
+				size_hint: 0.5, 1
+				text: "BACK"
+				on_press: root.manager.current = 'home'
+
+
+
